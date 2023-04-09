@@ -4,11 +4,11 @@ namespace App\Model\DAO;
 
 use App\Controller\Http\Db\Connection;
 
-class User
+class Product
 {
 
     private $pdo;
-    private $table = 'users';
+    private $table = 'products';
 
     public function __construct()
     {
@@ -20,8 +20,10 @@ class User
         $commands = <<<TABLE
     CREATE TABLE IF NOT EXISTS $this->table (
         id   INTEGER PRIMARY KEY,
-        name   VARCHAR (255),
-        email VARCHAR (255)
+        description   VARCHAR (255),
+        barcode   VARCHAR (255),
+        value   VARCHAR (255),
+        tax   VARCHAR (255)
     )
 TABLE;
 
@@ -40,8 +42,10 @@ TABLE;
         $i = 0;
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $data[$i]["id"] = $row["id"];
-            $data[$i]["name"] = $row["name"];
-            $data[$i]["email"] = json_decode($row["email"]);
+            $data[$i]["description"] = $row["description"];
+            $data[$i]["barcode"] = $row["barcode"];
+            $data[$i]["value"] = $row["value"];
+            $data[$i]["tax"] = $row["tax"];
             $i++;
         }
 
@@ -55,8 +59,10 @@ TABLE;
         $stmt->execute();
         $data = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $data["name"] = $row["name"];
-            $data["email"] = json_decode($row["email"]);
+            $data["description"] = $row["description"];
+            $data["barcode"] = $row["barcode"];
+            $data["value"] = $row["value"];
+            $data["tax"] = $row["tax"];
         }
 
         return $data;
@@ -64,10 +70,12 @@ TABLE;
 
     public function insert($data)
     {
-        $sql = "INSERT INTO $this->table (name, email) VALUES (:name, :email)";
+        $sql = "INSERT INTO $this->table (description, barcode, value, tax) VALUES (:description, :barcode, :value, :tax)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(":name", $data["name"]);
-        $stmt->bindValue(":email", json_encode($data["email"]));
+        $stmt->bindValue(":description", $data["description"]);
+        $stmt->bindValue(":barcode", $data["barcode"]);
+        $stmt->bindValue(":value", $data["value"]);
+        $stmt->bindValue(":tax", $data["tax"]);
         $stmt->execute();
         return $this->pdo->lastInsertId();
     }
@@ -75,12 +83,13 @@ TABLE;
     public function update($id, $data)
     {
         $sql =
-            "UPDATE $this->table SET name = :name, email = :email WHERE id = :id";
+            "UPDATE $this->table SET description = :description, barcode = :barcode, value = :value, tax = :tax WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id", $id);
-        $stmt->bindValue(":name", $data["name"]);
-        $stmt->bindValue(":email", json_encode($data["email"]));
-
+        $stmt->bindValue(":description", $data["description"]);
+        $stmt->bindValue(":barcode", $data["barcode"]);
+        $stmt->bindValue(":value", $data["value"]);
+        $stmt->bindValue(":tax", $data["tax"]);
         return $stmt->execute();
     }
 

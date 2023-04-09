@@ -1,9 +1,18 @@
 ## Arquitetura
-* MVC
+
+-   MVC
 
 ## Tools
-* EditorConfig
-* Docker
-* PHP
-* Composer
-* Makefile
+
+-   EditorConfig
+-   Docker
+-   PHP
+-   Composer
+-   Makefile
+
+## RUN
+
+```
+make
+make composer
+```
