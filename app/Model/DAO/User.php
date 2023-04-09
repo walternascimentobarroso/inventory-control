@@ -74,8 +74,7 @@ TABLE;
 
     public function update($id, $data)
     {
-        $sql =
-            "UPDATE $this->table SET name = :name, email = :email WHERE id = :id";
+        $sql = "UPDATE $this->table SET name = :name, email = :email WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->bindValue(":name", $data["name"]);

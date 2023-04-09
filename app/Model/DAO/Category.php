@@ -4,11 +4,11 @@ namespace App\Model\DAO;
 
 use App\Controller\Http\Db\Connection;
 
-class Product
+class Category
 {
 
     private $pdo;
-    private $table = 'products';
+    private $table = 'categories';
 
     public function __construct()
     {
@@ -20,10 +20,7 @@ class Product
         $commands = <<<TABLE
     CREATE TABLE IF NOT EXISTS $this->table (
         id   INTEGER PRIMARY KEY,
-        description   VARCHAR (255),
-        barcode   VARCHAR (255),
-        value   VARCHAR (255),
-        tax   VARCHAR (255)
+        description   VARCHAR (255)
     )
 TABLE;
 
@@ -43,9 +40,6 @@ TABLE;
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $data[$i]["id"] = $row["id"];
             $data[$i]["description"] = $row["description"];
-            $data[$i]["barcode"] = $row["barcode"];
-            $data[$i]["value"] = $row["value"];
-            $data[$i]["tax"] = $row["tax"];
             $i++;
         }
 
@@ -60,9 +54,6 @@ TABLE;
         $data = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $data["description"] = $row["description"];
-            $data["barcode"] = $row["barcode"];
-            $data["value"] = $row["value"];
-            $data["tax"] = $row["tax"];
         }
 
         return $data;
@@ -70,25 +61,19 @@ TABLE;
 
     public function insert($data)
     {
-        $sql = "INSERT INTO $this->table (description, barcode, value, tax) VALUES (:description, :barcode, :value, :tax)";
+        $sql = "INSERT INTO $this->table (description) VALUES (:description)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":description", $data["description"]);
-        $stmt->bindValue(":barcode", $data["barcode"]);
-        $stmt->bindValue(":value", $data["value"]);
-        $stmt->bindValue(":tax", $data["tax"]);
         $stmt->execute();
         return $this->pdo->lastInsertId();
     }
 
     public function update($id, $data)
     {
-        $sql = "UPDATE $this->table SET description = :description, barcode = :barcode, value = :value, tax = :tax WHERE id = :id";
+        $sql = "UPDATE $this->table SET description = :description WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->bindValue(":description", $data["description"]);
-        $stmt->bindValue(":barcode", $data["barcode"]);
-        $stmt->bindValue(":value", $data["value"]);
-        $stmt->bindValue(":tax", $data["tax"]);
         return $stmt->execute();
     }
 

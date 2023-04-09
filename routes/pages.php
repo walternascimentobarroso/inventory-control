@@ -23,3 +23,12 @@ Router::get('/product/{id}', [Pages\ProductController::class, 'get']);
 Router::post('/product', [Pages\ProductController::class, 'create']);
 Router::put('/product/{id}', [Pages\ProductController::class, 'update']);
 Router::delete('/product/{id}', [Pages\ProductController::class, 'delete']);
+
+/**
+ * CRUD Category
+ */
+Router::get('/category', [Pages\CategoryController::class, 'getAll']);
+Router::get('/category/{id}', [Pages\CategoryController::class, 'get']);
+Router::post('/category', [Pages\CategoryController::class, 'create']);
+Router::put('/category/{id}', [Pages\CategoryController::class, 'update']);
+Router::delete('/category/{id}', [Pages\CategoryController::class, 'delete']);
