@@ -23,7 +23,6 @@ Router::post('/category', [Pages\CategoryController::class, 'create']);
 Router::put('/category/{id}', [Pages\CategoryController::class, 'update']);
 Router::delete('/category/{id}', [Pages\CategoryController::class, 'delete']);
 
-
 /**
  * CRUD Product
  */
@@ -33,3 +32,13 @@ Router::get('/product/{id}', [Pages\ProductController::class, 'get']);
 Router::post('/product', [Pages\ProductController::class, 'create']);
 Router::put('/product/{id}', [Pages\ProductController::class, 'update']);
 Router::delete('/product/{id}', [Pages\ProductController::class, 'delete']);
+
+/**
+ * CRUD Sale
+ */
+Router::get('/sale/createTable', [Pages\SaleController::class, 'createTable']);
+Router::get('/sale', [Pages\SaleController::class, 'getAll']);
+Router::get('/sale/{id}', [Pages\SaleController::class, 'get']);
+Router::post('/sale', [Pages\SaleController::class, 'create']);
+Router::put('/sale/{id}', [Pages\SaleController::class, 'update']);
+Router::delete('/sale/{id}', [Pages\SaleController::class, 'delete']);

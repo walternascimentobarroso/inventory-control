@@ -1,3 +1,5 @@
+# Inventory Control
+
 ## Arquitetura
 
 -   MVC
@@ -7,8 +9,9 @@
 -   EditorConfig
 -   Docker
 -   PHP
--   Composer
 -   Makefile
+-   Composer
+    -   symfony/dotenv
 
 ## RUN
 
