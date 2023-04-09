@@ -8,6 +8,12 @@ use App\Controller\Http\Response;
 class ProductController
 {
 
+    public function createTable()
+    {
+        $result = (new Product())->createTables();
+        return (new Response(200, json_encode($result)))->sendResponse();
+    }
+
     public function getAll()
     {
         $result = (new Product())->getAll();

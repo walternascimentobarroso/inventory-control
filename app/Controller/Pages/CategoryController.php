@@ -8,10 +8,15 @@ use App\Controller\Http\Response;
 class CategoryController
 {
 
+    public function createTable()
+    {
+        $result = (new Category())->createTables();
+        return (new Response(200, json_encode($result)))->sendResponse();
+    }
+
     public function getAll()
     {
         $result = (new Category())->getAll();
-        // $result = (new Category())->createTables();
         return (new Response(200, json_encode($result)))->sendResponse();
     }
 

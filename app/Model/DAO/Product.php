@@ -21,6 +21,7 @@ class Product
     CREATE TABLE IF NOT EXISTS $this->table (
         id   INTEGER PRIMARY KEY,
         description   VARCHAR (255),
+        category    INTEGER,
         barcode   VARCHAR (255),
         value   VARCHAR (255),
         tax   VARCHAR (255)
@@ -43,6 +44,7 @@ TABLE;
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $data[$i]["id"] = $row["id"];
             $data[$i]["description"] = $row["description"];
+            $data[$i]["category"] = $row["category"];
             $data[$i]["barcode"] = $row["barcode"];
             $data[$i]["value"] = $row["value"];
             $data[$i]["tax"] = $row["tax"];
@@ -60,6 +62,7 @@ TABLE;
         $data = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $data["description"] = $row["description"];
+            $data["category"] = $row["category"];
             $data["barcode"] = $row["barcode"];
             $data["value"] = $row["value"];
             $data["tax"] = $row["tax"];
@@ -70,9 +73,10 @@ TABLE;
 
     public function insert($data)
     {
-        $sql = "INSERT INTO $this->table (description, barcode, value, tax) VALUES (:description, :barcode, :value, :tax)";
+        $sql = "INSERT INTO $this->table (description, category, barcode, value, tax) VALUES (:description, :category, :barcode, :value, :tax)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":description", $data["description"]);
+        $stmt->bindValue(":category", $data["category"]);
         $stmt->bindValue(":barcode", $data["barcode"]);
         $stmt->bindValue(":value", $data["value"]);
         $stmt->bindValue(":tax", $data["tax"]);
@@ -82,10 +86,11 @@ TABLE;
 
     public function update($id, $data)
     {
-        $sql = "UPDATE $this->table SET description = :description, barcode = :barcode, value = :value, tax = :tax WHERE id = :id";
+        $sql = "UPDATE $this->table SET description = :description, category = :category, barcode = :barcode, value = :value, tax = :tax WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->bindValue(":description", $data["description"]);
+        $stmt->bindValue(":category", $data["category"]);
         $stmt->bindValue(":barcode", $data["barcode"]);
         $stmt->bindValue(":value", $data["value"]);
         $stmt->bindValue(":tax", $data["tax"]);

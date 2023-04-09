@@ -7,11 +7,15 @@ use App\Controller\Http\Response;
 
 class UserController
 {
+    public function createTable()
+    {
+        $result = (new User())->createTables();
+        return (new Response(200, json_encode($result)))->sendResponse();
+    }
 
     public function getAll()
     {
         $result = (new User())->getAll();
-        // $result = (new User())->createTables();
         return (new Response(200, json_encode($result)))->sendResponse();
     }
 
