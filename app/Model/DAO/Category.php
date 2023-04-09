@@ -10,9 +10,12 @@ class Category
     private $pdo;
     private $table = 'categories';
 
-    public function __construct()
+    public function __construct($connection = null)
     {
-        $this->pdo = (new Connection())->connect();
+        if (!$connection) {
+            $connection = (new Connection())->connect();
+        }
+        $this->pdo = $connection;
     }
 
     public function createTables()

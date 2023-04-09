@@ -10,9 +10,12 @@ class Sale
     private $pdo;
     private $table = 'sale';
 
-    public function __construct()
+    public function __construct($connection = null)
     {
-        $this->pdo = (new Connection())->connect();
+        if (!$connection) {
+            $connection = (new Connection())->connect();
+        }
+        $this->pdo = $connection;
     }
 
     public function createTables()
@@ -56,7 +59,6 @@ TABLE;
         $data = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $data["items"] = $row["items"];
-            $data["category"] = $row["category"];
             $data["total"] = $row["total"];
         }
 

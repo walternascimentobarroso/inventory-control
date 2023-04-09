@@ -12,10 +12,12 @@
 -   Makefile
 -   Composer
     -   symfony/dotenv
+    -   phpunit/phpunit
 
 ## RUN
 
 ```
 make
 make composer
+make test
 ```

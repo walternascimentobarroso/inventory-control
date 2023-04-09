@@ -13,6 +13,9 @@ build:
 composer:
 	docker-compose exec php_mvc composer install
 
+test:
+	docker-compose exec php_mvc ./vendor/bin/phpunit tests --display-warnings
+
 bash_php: up
 	docker-compose exec php_mvc bash
 

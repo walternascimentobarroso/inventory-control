@@ -10,9 +10,12 @@ class Product
     private $pdo;
     private $table = 'products';
 
-    public function __construct()
+    public function __construct($connection = null)
     {
-        $this->pdo = (new Connection())->connect();
+        if (!$connection) {
+            $connection = (new Connection())->connect();
+        }
+        $this->pdo = $connection;
     }
 
     public function createTables()
