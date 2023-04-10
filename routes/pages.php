@@ -4,6 +4,11 @@ use App\Controller\Pages;
 use App\Controller\Http\Router;
 
 /**
+ * Home
+ */
+Router::get('/', [Pages\HomeController::class, 'index']);
+
+/**
  * CRUD User
  */
 Router::get('/user/createTable', [Pages\UserController::class, 'createTable']);
