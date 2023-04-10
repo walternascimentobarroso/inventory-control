@@ -16,6 +16,7 @@ class UserController
     public function getAll()
     {
         echo ("<pre>");
+        echo ("user");
         print_r($_ENV);
         echo ("</pre>");
         $result = (new User())->getAll();
