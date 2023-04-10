@@ -1,4 +1,5 @@
 vendor
 .env
 db/database.db
+db/data
 composer.lock

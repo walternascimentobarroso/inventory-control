@@ -55,9 +55,6 @@ class Router
 
     public static function run()
     {
-        echo ("<pre>");
-        print_r($_ENV);
-        echo ("</pre>");
         try {
             $route = self::getRoute();
             $controller = $route['controller'];
@@ -66,7 +63,6 @@ class Router
             $args = $route['variables'] ?? [];
             return call_user_func([$controller_object, $action], $args);
         } catch (Exception $e) {
-            http_response_code($e->getCode());
             echo $e->getMessage();
         }
     }

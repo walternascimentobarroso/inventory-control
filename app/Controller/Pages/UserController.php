@@ -15,10 +15,6 @@ class UserController
 
     public function getAll()
     {
-        echo ("<pre>");
-        echo ("user");
-        print_r($_ENV);
-        echo ("</pre>");
         $result = (new User())->getAll();
         return (new Response(200, json_encode($result)))->sendResponse();
     }

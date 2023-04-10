@@ -12,12 +12,6 @@ class Request
 
     public function __construct()
     {
-        echo ("<pre>");
-        print_r(__DIR__);
-        echo ("</pre>");
-        echo ("<pre>");
-        print_r($_ENV);
-        echo ("</pre>");
         $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
         $this->uri = $_SERVER['REQUEST_URI'] ?? '';
         $this->queryParms = $_GET ?? [];
