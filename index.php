@@ -1,7 +1,9 @@
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
+echo ("<pre>");
 print_r($_ENV);
+echo ("</pre>");
 die;
 // (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__ . '/../.env');
 
