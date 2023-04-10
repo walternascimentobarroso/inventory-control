@@ -18,7 +18,6 @@ class UserController
         echo ("<pre>");
         print_r($_ENV);
         echo ("</pre>");
-        die;
         $result = (new User())->getAll();
         return (new Response(200, json_encode($result)))->sendResponse();
     }

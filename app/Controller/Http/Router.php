@@ -36,10 +36,6 @@ class Router
 
     private static function getRoute()
     {
-        echo ("<pre>");
-        print_r($_ENV);
-        echo ("</pre>");
-        die;
         $uri = $_SERVER['REQUEST_URI'] ?? '';
         $httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
 
@@ -62,7 +58,6 @@ class Router
         echo ("<pre>");
         print_r($_ENV);
         echo ("</pre>");
-        die;
         try {
             $route = self::getRoute();
             $controller = $route['controller'];
