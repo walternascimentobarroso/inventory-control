@@ -3,7 +3,6 @@
 namespace App\Model\DAO;
 
 use App\Controller\Http\Db\Connection;
-use App\Controller\Http\Db\TestConnection;
 
 class User
 {
@@ -14,7 +13,7 @@ class User
     public function __construct($connection = null)
     {
         if (!$connection) {
-            $connection = (new TestConnection())->connect();
+            $connection = (new Connection())->connect();
         }
         $this->pdo = $connection;
     }

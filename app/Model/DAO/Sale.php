@@ -8,7 +8,7 @@ class Sale
 {
 
     private $pdo;
-    private $table = 'sale';
+    private $table = 'sales';
 
     public function __construct($connection = null)
     {
