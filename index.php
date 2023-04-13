@@ -2,7 +2,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Model\DAO\Product;
 use App\Controller\Http\Db\Connection;
 
 (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__ . '/.env');
@@ -35,7 +34,7 @@ function createTables()
         CREATE TABLE public.sales (
             id serial PRIMARY KEY,
             items varchar(255) NULL,
-            total int4 NULL
+            total varchar(255) NULL
         );
 
         CREATE TABLE public.users (
