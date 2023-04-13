@@ -19,5 +19,6 @@
 ```
 make
 make composer
+make startdb
 make test
 ```

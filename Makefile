@@ -13,6 +13,9 @@ build:
 composer:
 	docker-compose exec php_mvc composer install
 
+startdb:
+	docker-compose exec php_mvc php index.php
+
 test:
 	docker-compose exec php_mvc ./vendor/bin/phpunit tests
 
