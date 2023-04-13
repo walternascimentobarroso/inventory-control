@@ -25,6 +25,7 @@ Router::delete('/category/{id}', [Pages\CategoryController::class, 'delete']);
  * CRUD Product
  */
 Router::get('/product', [Pages\ProductController::class, 'getAll']);
+Router::get('/product/barcode/{barcode}', [Pages\ProductController::class, 'getBarcode']);
 Router::get('/product/{id}', [Pages\ProductController::class, 'get']);
 Router::post('/product', [Pages\ProductController::class, 'create']);
 Router::put('/product/{id}', [Pages\ProductController::class, 'update']);

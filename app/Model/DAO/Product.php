@@ -74,6 +74,23 @@ TABLE;
         return $data;
     }
 
+    public function getBarcode($barcode)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM $this->table WHERE barcode = :barcode");
+        $stmt->bindParam(":barcode", $barcode);
+        $stmt->execute();
+        $data = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $data["description"] = $row["description"];
+            $data["category"] = $row["category"];
+            $data["barcode"] = $row["barcode"];
+            $data["value"] = $row["value"];
+            $data["tax"] = $row["tax"];
+        }
+
+        return $data;
+    }
+
     public function insert($data)
     {
         $sql = "INSERT INTO $this->table (description, category, barcode, value, tax) VALUES (:description, :category, :barcode, :value, :tax)";

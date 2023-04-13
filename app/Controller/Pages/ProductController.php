@@ -27,6 +27,12 @@ class ProductController
         return (new Response(200, json_encode($result)))->sendResponse();
     }
 
+    public function getBarcode($barcode)
+    {
+        $result = (new Product())->getBarcode($barcode['barcode']);
+        return (new Response(200, json_encode($result)))->sendResponse();
+    }
+
     public function create()
     {
         $data = (array) json_decode(file_get_contents("php://input"), true);
